@@ -50,7 +50,7 @@ const itemVariants = {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-16 md:py-24 bg-gray-50 dark:bg-slate-900">
+    <section id="projects" className="py-16 md:py-24 bg-[var(--primary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
@@ -59,11 +59,11 @@ export default function Projects() {
           viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
-            Nos Réalisations
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Nos dernières réalisations
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Découvrez quelques-uns des projets qui illustrent notre savoir-faire et notre passion pour l'innovation digitale.
+          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+            Découvrez un aperçu de nos projets récents, conçus avec passion et expertise pour répondre aux besoins uniques de nos clients.
           </p>
         </motion.div>
 
@@ -78,34 +78,37 @@ export default function Projects() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800"
+              className="flex flex-col overflow-hidden rounded-xl shadow-lg bg-white"
             >
-              <div className="relative h-80 w-full">
+              <div className="relative h-60 w-full flex-shrink-0">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
                 />
               </div>
-
-              {/* Static content overlay at the bottom (title, category) */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent pointer-events-none">
-                <h3 className="text-xl lg:text-2xl font-semibold text-white mb-1 truncate" title={project.title}>{project.title}</h3>
-                <p className="text-sm font-medium text-[#f43f5e]">{project.category}</p>
-              </div>
-
-              {/* Hover overlay (link/button) */}
-              <Link href={project.url} legacyBehavior>
-                <a className="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out cursor-pointer">
-                  <span
-                    className="px-6 py-3 bg-[#f43f5e] text-white text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition-colors duration-300"
-                  >
+              <div className="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <h3 className="text-xl font-semibold text-[var(--text)] mb-2" title={project.title}>{project.title}</h3>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-1 text-xs font-semibold text-white bg-[var(--secondary)] rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+                </div>
+                <Link href={project.url} legacyBehavior>
+                  <a className="mt-auto inline-block px-6 py-3 bg-[var(--secondary)] text-white text-base font-semibold rounded-lg shadow-md hover:bg-opacity-80 transition-colors duration-300 text-center">
                     Voir le projet
-                  </span>
-                </a>
-              </Link>
+                  </a>
+                </Link>
+              </div>
             </motion.div>
           ))}
         </motion.div>
