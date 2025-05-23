@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import {
   FaFacebook,
   FaTwitter,
@@ -55,26 +55,26 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
               {navigation.social.map((item) => (
-                <motion.a
+                <a
                   key={item.name}
                   href={item.href}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  // whileHover={{ scale: 1.1 }}
+                  // whileTap={{ scale: 0.9 }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-6 w-6" />
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>
         </div>
         <div className="border-t border-gray-800 pt-8">
           <p className="text-center text-gray-400 text-sm">
-            © {new Date().getFullYear()} CodeVista. All rights reserved.
+            {new Date().getFullYear()} CodeVista. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
   )
-} 
+}

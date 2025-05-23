@@ -149,33 +149,34 @@ export default function Contact() {
                 />
               </div>
               <motion.button
-                whileHover={{ scale: 1.03, boxShadow: "0px 0px 12px rgba(244, 63, 94, 0.5)" }}
-                whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="w-full bg-[#f43f5e] text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-red-500 shadow-md"
+                variants={itemVariants} // Re-using itemVariants for simplicity, or create a specific one
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full bg-[#f43f5e] text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-300"
               >
                 Envoyer le Message
               </motion.button>
             </form>
           </motion.div>
 
-          {/* Contact Info Section */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            {contactDetails.map((item) => (
+          {/* Contact Details Section */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            {contactDetails.map((item, index) => (
               <motion.div
-                key={item.title}
-                variants={itemVariants}
-                className="bg-slate-800 dark:bg-gray-800 p-6 rounded-lg shadow-xl flex items-start space-x-4"
+                key={index}
+                variants={itemVariants} // Stagger children if sectionVariants has staggerChildren
+                className="flex items-start p-6 bg-slate-800 dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <item.icon className="h-8 w-8 text-[#f43f5e] flex-shrink-0 mt-1" aria-hidden="true" />
+                <item.icon className="h-8 w-8 text-[#f43f5e] mr-5 mt-1 flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-white mb-1">{item.title}</h3>
                   <p className="text-gray-300 dark:text-gray-400 mb-2">{item.details}</p>
                   <a 
                     href={item.href} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-sm text-[#f43f5e] hover:text-red-400 transition-colors duration-300 font-medium"
+                    className="text-sm font-medium text-[#f43f5e] hover:text-red-400 transition-colors duration-300"
                   >
                     {item.linkText}
                   </a>

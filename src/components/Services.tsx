@@ -17,7 +17,7 @@ const services = [
   },
   {
     title: 'Applications mobiles',
-    description: 'Développement d\u0027applications iOS et Android natives ou hybrides, intuitives et engageantes.',
+    description: 'Développement d\'applications iOS et Android natives ou hybrides, intuitives et engageantes.',
     icon: DevicePhoneMobileIcon,
   },
   {
@@ -37,7 +37,7 @@ const services = [
   },
   {
     title: 'Hébergement et maintenance',
-    description: 'Solutions d\u0027hébergement fiables et services de maintenance proactifs pour assurer la pérennité de vos projets.',
+    description: 'Solutions d\'hébergement fiables et services de maintenance proactifs pour assurer la pérennité de vos projets.',
     icon: ServerStackIcon,
   },
 ];

@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const menuItems = [
+  const navigation = [
+    { name: 'Accueil', href: '/' },
     { name: 'Services', href: '#services' },
-    { name: 'Projets', href: '#projects' },
-    { name: 'À Propos', href: '#about' },
+    { name: 'Projets', href: '#projets' },
+    { name: 'A Propos', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -20,75 +21,90 @@ export default function Navbar() {
   }
 
   const mobileMenuVariants = {
-    closed: { opacity: 0, height: 0, transition: { duration: 0.3, ease: "easeInOut" } },
-    open: { opacity: 1, height: "auto", transition: { duration: 0.4, ease: "easeInOut" } },
+    hidden: { opacity: 0, x: "-100%" },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
   }
 
   return (
-    <nav className="fixed w-full bg-[var(--background)] z-50 shadow-sm">
-      <motion.div
+    <nav className="bg-transparent absolute top-0 left-0 right-0 z-50">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        variants={navVariants}
         initial="hidden"
         animate="visible"
-        variants={navVariants}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-white hover:opacity-80 transition-opacity">
-              Codevista
+        <div className="flex items-center justify-between h-20 md:h-24">
+          <div className="flex items-center">
+            <Link href="/" className="text-white text-2xl font-bold">
+                Code<span className="text-[#f43f5e]">Vista</span>
             </Link>
           </div>
-
-          <div className="flex items-center space-x-4">
-            {/* Language Switcher */}
-            <div className="text-sm text-white hidden sm:block">
-              <button className="font-semibold hover:text-gray-300 transition-colors">FR</button>
-              <span className="text-gray-500 mx-1">|</span>
-              <button className="text-gray-400 hover:text-white transition-colors">EN</button>
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
-
-            {/* Hamburger Menu Button */}
-            <div className="flex items-center">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Toggle menu"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all"
-              >
-                {isOpen ? (
-                  <XMarkIcon className="block h-6 w-6" />
-                ) : (
-                  <Bars3Icon className="block h-6 w-6" />
-                )}
-              </button>
-            </div>
+          </div>
+          <div className="-mr-2 flex md:hidden">
+            <button
+              type="button"
+              className="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              aria-controls="mobile-menu"
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Ouvrir le menu principal</span>
+              <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+            </button>
           </div>
         </div>
       </motion.div>
 
       {/* Flyout Menu */}
-      <motion.div
+      <motion.div 
+        className={`fixed inset-0 z-50 md:hidden`}
         variants={mobileMenuVariants}
-        initial="closed"
-        animate={isOpen ? "open" : "closed"}
-        className="absolute w-full bg-gray-800 md:bg-opacity-95 backdrop-blur-sm shadow-lg overflow-hidden"
+        initial="hidden"
+        animate={mobileMenuOpen ? "visible" : "hidden"}
+        style={{ backdropFilter: mobileMenuOpen ? 'blur(5px)' : 'none' }}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {menuItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/80 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          {/* Language switcher for small screens inside menu */}
-          <div className="px-3 pt-3 pb-2 sm:hidden">
-            <div className="text-sm text-white flex items-center justify-center space-x-2">
-              <button className="font-semibold hover:text-gray-300 transition-colors p-1">FR</button>
-              <span className="text-gray-500">|</span>
-              <button className="text-gray-400 hover:text-white transition-colors p-1">EN</button>
+        <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-gray-900 bg-opacity-95 shadow-xl ring-1 ring-black ring-opacity-5">
+          <div className="px-5 pt-5 pb-6 space-y-1">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="text-white text-2xl font-bold" onClick={() => setMobileMenuOpen(false)}>
+                  Code<span className="text-[#f43f5e]">Vista</span>
+              </Link>
+              <div className="-mr-2">
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="sr-only">Fermer le menu</span>
+                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+            <div className="mt-6">
+              <nav className="grid gap-y-4">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 text-base font-medium text-gray-300 hover:text-white transition-colors duration-300"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
             </div>
           </div>
         </div>

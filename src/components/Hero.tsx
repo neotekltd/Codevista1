@@ -1,6 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
-import Image from 'next/image'
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -12,7 +12,6 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
         className="absolute -left-[20rem] -top-[10rem] w-[50rem] h-[50rem] sm:w-[60rem] sm:h-[60rem] md:w-[70rem] md:h-[70rem] bg-[#f43f5e] rounded-full opacity-20 md:opacity-25 pointer-events-none z-0"
       />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 items-center">
           {/* Image Section (Left on Desktop) */}
@@ -30,7 +29,6 @@ export default function Hero() {
               priority
             />
           </motion.div>
-
           {/* Text Content Section (Right on Desktop) */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
