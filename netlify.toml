@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.production]
+  command = "npm run build"
+  publish = "out"
+
+[context.deploy-preview]
+  command = "npm run build"
+  publish = "out"
+
+[context.branch-deploy]
+  command = "npm run build"
+  publish = "out"
