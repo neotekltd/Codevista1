@@ -1,38 +1,15 @@
 "use client";
-import { motion } from "framer-motion";
 import Image from 'next/image';
-
-const sectionVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.3 }
-  },
-};
-
-const textContentVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const imageVariants = {
-  hidden: { opacity: 0, x: 30, scale: 0.9 },
-  visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
-};
 
 export default function About() {
   return (
     <section id="about" className="py-16 md:py-24 bg-[var(--background)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+        <div 
           className="grid md:grid-cols-2 gap-12 md:gap-16 items-center"
         >
           {/* Left Column: Title and Paragraph */}
-          <motion.div variants={textContentVariants}>
+          <div>
             <h2 className="text-3xl md:text-4xl font-semibold text-[var(--text)] mb-6">
               À propos de nous
             </h2>
@@ -44,11 +21,10 @@ export default function About() {
                 Nous avons commencé comme une petite équipe de passionnés de technologie, déterminés à créer des solutions web qui non seulement répondent aux attentes, mais les dépassent. Au fil des ans, nous avons grandi, évolué et affiné notre expertise, mais notre engagement initial envers l'excellence et la satisfaction client est resté inchangé. Chaque projet est une nouvelle opportunité de démontrer notre passion pour le digital.
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Image */}
-          <motion.div 
-            variants={imageVariants} 
+          <div 
             className="relative h-[300px] sm:h-[350px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
           >
             <Image
@@ -58,8 +34,8 @@ export default function About() {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

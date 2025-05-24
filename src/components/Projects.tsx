@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -38,25 +37,11 @@ const projectsData = [
   },
 ];
 
-const sectionVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export default function Projects() {
   return (
     <section id="projects" className="py-16 md:py-24 bg-[var(--primary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+        <div
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -65,19 +50,14 @@ export default function Projects() {
           <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
             Découvrez un aperçu de nos projets récents, conçus avec passion et expertise pour répondre aux besoins uniques de nos clients.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+        <div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"
         >
           {projectsData.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
               className="flex flex-col overflow-hidden rounded-xl shadow-lg bg-white"
             >
               <div className="relative h-60 w-full flex-shrink-0">
@@ -109,9 +89,9 @@ export default function Projects() {
                   </a>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

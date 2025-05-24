@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Image from 'next/image';
 import { CheckCircleIcon } from '@heroicons/react/24/solid'; // Using solid for a filled checkmark
 
@@ -30,30 +29,11 @@ const siteVitrineBenefits = [
   },
 ];
 
-const titleVariants = {
-  hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-};
-
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
 export default function Services() {
   return (
     <section id="services" className="py-16 md:py-24 bg-[var(--background)] text-[var(--text)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={titleVariants}
+        <div
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-[var(--text)] mb-4">
@@ -62,15 +42,11 @@ export default function Services() {
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Un site vitrine est bien plus qu'une simple présence en ligne. C'est un outil puissant pour développer votre activité, renforcer votre image de marque et atteindre vos objectifs commerciaux.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left Column: Illustration */}
-          <motion.div 
-            variants={imageVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+          <div 
             className="relative h-[300px] sm:h-[400px] md:h-[450px]"
           >
             <Image 
@@ -79,20 +55,15 @@ export default function Services() {
               fill
               className="object-contain"
             />
-          </motion.div>
+          </div>
 
           {/* Right Column: Benefits List */}
-          <motion.div 
+          <div 
             className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{ visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } } }}
           >
             {siteVitrineBenefits.map((benefit, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
                 className="flex items-start space-x-3"
               >
                 <CheckCircleIcon className="flex-shrink-0 h-6 w-6 text-[var(--primary)] mt-0.5" aria-hidden="true" />
@@ -100,9 +71,9 @@ export default function Services() {
                   <h3 className="text-lg font-semibold text-[var(--text)] mb-1">{benefit.title}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{benefit.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

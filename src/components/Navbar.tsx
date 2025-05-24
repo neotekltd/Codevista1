@@ -1,7 +1,6 @@
 "use client";
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
@@ -10,16 +9,11 @@ export default function Navbar() {
   const navigation = [
     { name: 'Accueil', href: '/' },
     { name: 'Services', href: '#services' },
-    { name: 'Realisations', href: '#projects' }, // Renamed from Projets
+    { name: 'Portfolio', href: '/portfolio' },
     { name: 'Blog', href: '#blog' }, // Added Blog
     { name: 'A Propos', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ]
-
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, x: "-100%" },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
-  }
 
   return (
     <nav className="bg-[var(--background)] shadow-md sticky top-0 left-0 right-0 z-50">
@@ -75,11 +69,8 @@ export default function Navbar() {
       </div>
 
       {/* Flyout Menu */} 
-      <motion.div 
-        className={`fixed inset-0 z-50 md:hidden`}
-        variants={mobileMenuVariants}
-        initial="hidden"
-        animate={mobileMenuOpen ? "visible" : "hidden"}
+      <div 
+        className={`fixed inset-0 z-50 md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}
         style={{ backdropFilter: mobileMenuOpen ? 'blur(5px)' : 'none' }}
       >
         <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-[var(--background)] shadow-xl ring-1 ring-black ring-opacity-5">
@@ -115,7 +106,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </nav>
   )
 }

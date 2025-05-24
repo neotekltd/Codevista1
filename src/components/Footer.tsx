@@ -7,7 +7,8 @@ import Link from 'next/link';
 const navigation = [
   { name: 'Accueil', href: '/' },
   { name: 'Services', href: '/#services' },
-  { name: 'Projets', href: '/#projects' },
+  { name: 'Portfolio', href: '/portfolio' }, // Added Portfolio
+  { name: 'Projets', href: '/#projects' }, // Kept existing 'Projets' link, can be reviewed later
   { name: 'À Propos', href: '/#about' },
   { name: 'Contact', href: '/#contact' },
 ];
